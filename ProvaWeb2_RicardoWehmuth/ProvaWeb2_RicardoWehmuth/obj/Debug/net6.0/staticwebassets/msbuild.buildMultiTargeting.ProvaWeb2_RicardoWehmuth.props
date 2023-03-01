@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\ProvaWeb2_RicardoWehmuth.props" />
+</Project>

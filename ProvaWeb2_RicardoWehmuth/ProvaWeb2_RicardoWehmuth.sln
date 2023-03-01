@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProvaWeb2_RicardoWehmuth", "ProvaWeb2_RicardoWehmuth\ProvaWeb2_RicardoWehmuth.csproj", "{3A21FB15-B735-4CC1-BC75-C0A0DCFBF9DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A21FB15-B735-4CC1-BC75-C0A0DCFBF9DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A21FB15-B735-4CC1-BC75-C0A0DCFBF9DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A21FB15-B735-4CC1-BC75-C0A0DCFBF9DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A21FB15-B735-4CC1-BC75-C0A0DCFBF9DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FCEEC2EC-46EA-4C16-BEF5-5090E11D9213}
+	EndGlobalSection
+EndGlobal

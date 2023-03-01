@@ -1,0 +1,6 @@
+﻿namespace ProvaWeb2_RicardoWehmuth.Data
+{
+    public interface MyDB1
+    {
+    }
+}
