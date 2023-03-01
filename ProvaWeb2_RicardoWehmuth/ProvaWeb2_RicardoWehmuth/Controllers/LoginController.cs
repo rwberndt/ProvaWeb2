@@ -36,5 +36,19 @@ namespace ProvaWeb2_RicardoWehmuth.Controllers
                 return response;
             });
         }
+
+        [HttpPost,Route("/cadastrar")]
+        public async Task<IActionResult> Cadastrar([FromBody] UserModel login)
+        {
+            return await Task.Run(() =>
+            {
+
+                _authService.Cadastrar(login);
+
+                
+                return Ok();
+
+            });
+        }
     }
 }

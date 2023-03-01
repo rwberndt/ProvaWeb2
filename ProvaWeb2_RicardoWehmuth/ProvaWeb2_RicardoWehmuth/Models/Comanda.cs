@@ -6,8 +6,9 @@
         {
 
         }
-        public Comanda(Usuario usuario, IEnumerable<Produto> produtos)
+        public Comanda(int id,Usuario usuario, IEnumerable<Produto> produtos)
         {
+            Id = id;
             Usuario = usuario;
             Produtos = produtos;
         }

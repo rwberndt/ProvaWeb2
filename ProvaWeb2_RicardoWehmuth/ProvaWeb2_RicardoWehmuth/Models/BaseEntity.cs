@@ -3,12 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProvaWeb2_RicardoWehmuth.Models
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {
         public BaseEntity()
         {
 
         }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
     }
 }

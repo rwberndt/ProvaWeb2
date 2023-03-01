@@ -5,7 +5,7 @@
 namespace ProvaWeb2_RicardoWehmuth.Migrations
 {
     /// <inheritdoc />
-    public partial class test : Migration
+    public partial class m1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -29,8 +29,7 @@ namespace ProvaWeb2_RicardoWehmuth.Migrations
                 name: "Usuarios",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     NomeUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -42,8 +41,7 @@ namespace ProvaWeb2_RicardoWehmuth.Migrations
                 name: "Comandas",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     UsuarioId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -61,8 +59,7 @@ namespace ProvaWeb2_RicardoWehmuth.Migrations
                 name: "Produtos",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Preco = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ComandaId = table.Column<int>(type: "int", nullable: true)

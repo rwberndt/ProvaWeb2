@@ -15,7 +15,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ComandaContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
@@ -33,37 +33,37 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 
-builder.Services.AddTransient<IComandaRepository, ComandaRepository>();
+builder.Services.AddScoped<IComandaRepository, ComandaRepository>();
 builder.Services.AddTransient<IComandaService, ComandaService>();
-builder.Services.AddTransient<AuthService>();
+builder.Services.AddScoped<AuthService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    //    options.AddSecurityDefinition("Bearer",
-    //            new OpenApiSecurityScheme
-    //            {
-    //                Scheme = "Bearer",
-    //                BearerFormat = "JWT",
-    //                Name = "Authorization",
-    //                In = ParameterLocation.Header,
-    //                Type = SecuritySchemeType.ApiKey,
-    //                Description = "Header de autenticacao usando o schema JWT Bearer"
-    //            });
-    //    options.AddSecurityRequirement(
-    //        new OpenApiSecurityRequirement
-    //        {
-    //                {
-    //                    new OpenApiSecurityScheme
-    //                    {
-    //                        Reference = new OpenApiReference
-    //                        {
-    //                            Id = "Bearer",
-    //                            Type = ReferenceType.SecurityScheme,
-    //                        }
-    //                    },
-    //                    new string[] {}
-    //                }
-    //        });
+    options.AddSecurityDefinition("Bearer",
+            new OpenApiSecurityScheme
+            {
+                Scheme = "Bearer",
+                BearerFormat = "JWT",
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.ApiKey,
+                Description = "Header de autenticacao usando o schema JWT Bearer"
+            });
+    options.AddSecurityRequirement(
+        new OpenApiSecurityRequirement
+        {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Id = "Bearer",
+                                Type = ReferenceType.SecurityScheme,
+                            }
+                        },
+                        new string[] {}
+                    }
+        });
 });
 var app = builder.Build();
 

@@ -12,8 +12,8 @@ using ProvaWeb2_RicardoWehmuth.Context;
 namespace ProvaWeb2_RicardoWehmuth.Migrations
 {
     [DbContext(typeof(ComandaContext))]
-    [Migration("20230301190620_test")]
-    partial class test
+    [Migration("20230301200743_m1")]
+    partial class m1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,10 +28,7 @@ namespace ProvaWeb2_RicardoWehmuth.Migrations
             modelBuilder.Entity("ProvaWeb2_RicardoWehmuth.Models.Comanda", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");
@@ -46,10 +43,7 @@ namespace ProvaWeb2_RicardoWehmuth.Migrations
             modelBuilder.Entity("ProvaWeb2_RicardoWehmuth.Models.Produto", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("ComandaId")
                         .HasColumnType("int");
@@ -96,10 +90,7 @@ namespace ProvaWeb2_RicardoWehmuth.Migrations
             modelBuilder.Entity("ProvaWeb2_RicardoWehmuth.Models.Usuario", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("NomeUsuario")
                         .IsRequired()

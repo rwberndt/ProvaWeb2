@@ -20,15 +20,14 @@ namespace ProvaWeb2_RicardoWehmuth
             if (context.Comandas.Any())
                 return;
 
-            return;
 
             var usuarios = new Usuario[]
             {
-                new Usuario("Joao"),
-                new Usuario("Amanda"),
-                new Usuario("Ana Luiza"),
-                new Usuario("Maria"),
-                new Usuario("Jose")
+                new Usuario(1,"Joao"),
+                new Usuario(2,"Amanda"),
+                new Usuario(3,"Ana Luiza"),
+                new Usuario(4,"Maria"),
+                new Usuario(5,"Jose")
             };
             foreach (var usuario in usuarios)
             {
@@ -39,10 +38,10 @@ namespace ProvaWeb2_RicardoWehmuth
             context.SaveChanges();
             var produtos = new Produto[]
             {
-                new Produto("Monitor",990),
-                new Produto("Placa de Video",2200),
-                new Produto("Mouse",250),
-                new Produto("Teclado", 500)
+                new Produto(1,"Monitor",990),
+                new Produto(2,"Placa de Video",2200),
+                new Produto(3,"Mouse",250),
+                new Produto(4,"Teclado", 500)
             };
             foreach (var produto in produtos)
             {
@@ -53,9 +52,9 @@ namespace ProvaWeb2_RicardoWehmuth
 
             var comandas = new Comanda[]
             {
-                new Comanda(usuarios[0],new List<Produto>{produtos[0],produtos[1]}),
-                new Comanda(usuarios[0],new List<Produto>{produtos[2],produtos[1]}),
-                new Comanda(usuarios[0],new List<Produto>(){produtos[3] })
+                new Comanda(1,usuarios[0],new List<Produto>{produtos[0],produtos[1]}),
+                new Comanda(2,usuarios[0],new List<Produto>{produtos[2],produtos[1]}),
+                new Comanda(3,usuarios[0],new List<Produto>(){produtos[3] })
             };
             foreach (var comanda in comandas)
             {

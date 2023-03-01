@@ -2,12 +2,9 @@
 {
     public class Usuario : BaseEntity, IValidable
     {
-        public Usuario()
+        public Usuario(int id,string nomeUsuario)
         {
-
-        }
-        public Usuario(string nomeUsuario)
-        {
+            Id= id;
             NomeUsuario = nomeUsuario;
         }
 

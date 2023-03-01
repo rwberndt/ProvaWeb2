@@ -36,5 +36,11 @@ namespace ProvaWeb2_RicardoWehmuth.Services
             var autenticado = _context.Users.Where(x => x.username == login.username && x.password == login.password).FirstOrDefault();
             return autenticado;
         }
+
+        public void Cadastrar(UserModel user)
+        {
+            _context.Users.Add(user);
+            _context.SaveChanges();
+        }
     }
 }

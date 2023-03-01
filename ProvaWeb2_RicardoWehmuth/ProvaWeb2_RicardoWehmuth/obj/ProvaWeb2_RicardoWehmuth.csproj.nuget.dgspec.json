@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PremierSoft\\Documents\\Java\\ProvaWeb2\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth.csproj": {}
+    "C:\\Users\\PremierSoft\\Documents\\Java\\ProvaWeb2Git\\ProvaWeb2\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PremierSoft\\Documents\\Java\\ProvaWeb2\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth.csproj": {
+    "C:\\Users\\PremierSoft\\Documents\\Java\\ProvaWeb2Git\\ProvaWeb2\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PremierSoft\\Documents\\Java\\ProvaWeb2\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth.csproj",
+        "projectUniqueName": "C:\\Users\\PremierSoft\\Documents\\Java\\ProvaWeb2Git\\ProvaWeb2\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth.csproj",
         "projectName": "ProvaWeb2_RicardoWehmuth",
-        "projectPath": "C:\\Users\\PremierSoft\\Documents\\Java\\ProvaWeb2\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth.csproj",
+        "projectPath": "C:\\Users\\PremierSoft\\Documents\\Java\\ProvaWeb2Git\\ProvaWeb2\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth.csproj",
         "packagesPath": "C:\\Users\\PremierSoft\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PremierSoft\\Documents\\Java\\ProvaWeb2\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth\\obj\\",
+        "outputPath": "C:\\Users\\PremierSoft\\Documents\\Java\\ProvaWeb2Git\\ProvaWeb2\\ProvaWeb2_RicardoWehmuth\\ProvaWeb2_RicardoWehmuth\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PremierSoft\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,6 +46,10 @@
               "target": "Package",
               "version": "[6.0.14, )"
             },
+            "Microsoft.Data.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.3, )"
@@ -57,6 +61,10 @@
               "version": "[7.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite.Core": {
               "target": "Package",
               "version": "[7.0.3, )"
             },
@@ -77,6 +85,10 @@
             "Swashbuckle.AspNetCore.SwaggerUI": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
             }
           },
           "imports": [
