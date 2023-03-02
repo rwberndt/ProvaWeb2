@@ -20,7 +20,6 @@ namespace ProvaWeb2_RicardoWehmuth
             if (context.Comandas.Any())
                 return;
 
-
             var usuarios = new Usuario[]
             {
                 new Usuario(1,"Joao"),

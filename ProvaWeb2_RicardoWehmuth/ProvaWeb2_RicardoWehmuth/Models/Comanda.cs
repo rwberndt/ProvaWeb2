@@ -6,14 +6,15 @@
         {
 
         }
-        public Comanda(int id,Usuario usuario, IEnumerable<Produto> produtos)
+        public Comanda(int id, Usuario usuario, List<Produto> produtos)
         {
             Id = id;
             Usuario = usuario;
             Produtos = produtos;
         }
+        public int UsuarioId { get; set; }
         public virtual Usuario Usuario { get; set; }
-        public virtual IEnumerable<Produto> Produtos { get; set; }
+        public virtual List<Produto> Produtos { get;  set; }
 
         public bool IsValid()
         {

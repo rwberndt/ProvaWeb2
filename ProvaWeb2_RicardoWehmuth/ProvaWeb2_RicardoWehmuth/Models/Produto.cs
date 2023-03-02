@@ -2,7 +2,11 @@
 {
     public class Produto : BaseEntity, IValidable
     {
-        public Produto(int id,string nome, decimal preco)
+        public Produto()
+        {
+
+        }
+        public Produto(int id, string nome, decimal preco)
         {
             Id = id;
             Nome = nome;

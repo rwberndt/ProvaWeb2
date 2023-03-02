@@ -57,6 +57,7 @@ namespace ProvaWeb2_RicardoWehmuth.Migrations
             modelBuilder.Entity("ProvaWeb2_RicardoWehmuth.Models.UserModel", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("email")
@@ -93,7 +94,7 @@ namespace ProvaWeb2_RicardoWehmuth.Migrations
             modelBuilder.Entity("ProvaWeb2_RicardoWehmuth.Models.Comanda", b =>
                 {
                     b.HasOne("ProvaWeb2_RicardoWehmuth.Models.Usuario", "Usuario")
-                        .WithMany()
+                        .WithMany("Comandas")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -111,6 +112,11 @@ namespace ProvaWeb2_RicardoWehmuth.Migrations
             modelBuilder.Entity("ProvaWeb2_RicardoWehmuth.Models.Comanda", b =>
                 {
                     b.Navigation("Produtos");
+                });
+
+            modelBuilder.Entity("ProvaWeb2_RicardoWehmuth.Models.Usuario", b =>
+                {
+                    b.Navigation("Comandas");
                 });
 #pragma warning restore 612, 618
         }

@@ -5,7 +5,7 @@ namespace ProvaWeb2_RicardoWehmuth.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
-        private readonly ComandaContext _context;
+        public readonly ComandaContext _context;
 
         public Repository(ComandaContext context)
         {

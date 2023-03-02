@@ -4,5 +4,8 @@ namespace ProvaWeb2_RicardoWehmuth.Repositories
 {
     public interface IComandaRepository : IRepository<Comanda>
     {
+        IEnumerable<Comanda> GetAll();
+
+        void CadastrarComanda(Comanda comanda);
     }
 }

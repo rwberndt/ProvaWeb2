@@ -60,7 +60,7 @@ namespace ProvaWeb2_RicardoWehmuth.Services
                 return ServiceResult.Failure(new ArgumentException("Comanda inválida"));
             try
             {
-                _comandaRepository.Insert(comanda);
+                _comandaRepository.CadastrarComanda(comanda);
 
                 return ServiceResult<Comanda>.Success(comanda);
             }

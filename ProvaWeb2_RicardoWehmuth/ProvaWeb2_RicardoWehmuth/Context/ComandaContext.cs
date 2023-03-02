@@ -20,17 +20,18 @@ namespace ProvaWeb2_RicardoWehmuth.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            var comandaConfig = modelBuilder.Entity<Comanda>();
+
+            comandaConfig.HasKey(x => x.Id);
+            comandaConfig.HasOne(x => x.Usuario).WithMany(x=>x.Comandas);
+            comandaConfig.HasMany(x => x.Produtos);
+
             var userConfig = modelBuilder.Entity<Usuario>();
             userConfig.HasKey(x => x.Id);
 
             var produtoConfig = modelBuilder.Entity<Produto>();
             produtoConfig.HasKey(x => x.Id);
 
-            var comandaConfig = modelBuilder.Entity<Comanda>();
-
-            comandaConfig.HasKey(x => x.Id);
-            comandaConfig.HasMany(x => x.Produtos);
-            comandaConfig.HasOne(x => x.Usuario);
 
             var userModelConfig = modelBuilder.Entity<UserModel>();
 
