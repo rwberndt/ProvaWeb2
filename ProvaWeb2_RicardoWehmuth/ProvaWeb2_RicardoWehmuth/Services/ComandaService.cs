@@ -21,24 +21,20 @@ namespace ProvaWeb2_RicardoWehmuth.Services
 
         public async Task<ServiceResult> AtualizarComanda(int id, UpdateComandaDto update)
         {
-            if (!ValdateId(id))
+            if (!ValdateId(id) && update.IsValid())
                 return ServiceResult.Failure(new ArgumentException("Id inválido"));
             try
             {
                 var comanda = _comandaRepository.FindById(id);
                 if (comanda == null)
                     return ServiceResult.Failure();
-               var comandaProdutos =  _comandaProdutoRepository.BuscarComandaProdutoPorComanda(id).ToList();
-                update.Produtos.ForEach(x =>
+
+                update.Produtos.ForEach(p =>
                 {
-                    if (!comandaProdutos.Any(x => x.ProdutoId == x.Id))
-                    {
-                        var novo = new ComandaProduto(id, x.Id, x);
-                        _comandaProdutoRepository.Insert(novo);
-                    }
+                    _produtoRepository.Update(p);
                 });
 
-                return ServiceResult<Comanda>.Success(comanda);
+                return ServiceResult.Success(update);
             }
             catch (Exception e)
             {
@@ -54,10 +50,15 @@ namespace ProvaWeb2_RicardoWehmuth.Services
 
             var comanda = _comandaRepository.FindById(id);
 
-            var result = new CreateCommandDto(comanda.Id,comanda.Usuario);
+            var result = new CreateCommandDto();
+            if (comanda is not null)
+            {
 
-            var comandasProduto = _comandaProdutoRepository.BuscarComandaProdutoPorComanda(comanda.Id).ToList();
-            comandasProduto.ForEach(x => result.Produtos.Add(x.Produto));
+                result = new CreateCommandDto(comanda.Id, comanda.Usuario);
+
+                var comandasProduto = _comandaProdutoRepository.BuscarComandaProdutoPorComanda(comanda.Id).ToList();
+                comandasProduto.ForEach(x => result.Produtos.Add(x.Produto));
+            }
 
             return ServiceResult<Comanda>.Success(result);
         }
@@ -97,7 +98,7 @@ namespace ProvaWeb2_RicardoWehmuth.Services
                     if (produto is null)
                     {
                         _produtoRepository.Insert(p);
-                        
+
 
                     }
                     else
@@ -106,7 +107,7 @@ namespace ProvaWeb2_RicardoWehmuth.Services
 
                     }
 
-                    comandaProdutos.Add(new ComandaProduto(comanda.Id,p.Id,p));
+                    comandaProdutos.Add(new ComandaProduto(comanda.Id, p.Id, p));
                 });
 
                 var comandaEntity = new Comanda(comanda.Id, comanda.Usuario, new List<ComandaProduto>());

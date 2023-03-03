@@ -7,6 +7,8 @@ namespace ProvaWeb2_RicardoWehmuth.Repositories
 
         IEnumerable<ComandaProduto> BuscarComandaProdutoPorComanda(int ComandaId);
 
-        public void Insert(ComandaProduto entity);
+        void Insert(ComandaProduto entity);
+
+        void Update(ComandaProduto entity);
     }
 }

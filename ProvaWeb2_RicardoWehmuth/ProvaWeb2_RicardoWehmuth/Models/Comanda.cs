@@ -6,6 +6,12 @@
         {
 
         }
+        public Comanda(int id, Usuario usuario)
+        {
+            Id = id;
+            Usuario = usuario;
+            Produtos = new List<ComandaProduto>();
+        }
         public Comanda(int id, Usuario usuario, List<ComandaProduto> produtos)
         {
             Id = id;

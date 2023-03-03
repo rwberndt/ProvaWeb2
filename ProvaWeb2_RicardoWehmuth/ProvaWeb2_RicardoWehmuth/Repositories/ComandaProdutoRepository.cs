@@ -22,5 +22,11 @@ namespace ProvaWeb2_RicardoWehmuth.Repositories
             _context.ComandaProdutos.Add(entity);
             _context.SaveChanges();
         }
+
+        public void Update(ComandaProduto entity)
+        {
+            _context.ComandaProdutos.Update(entity);
+            _context.SaveChanges();
+        }
     }
 }

@@ -4,5 +4,11 @@
     {
 
         public List<Produto> Produtos { get; set; }
+
+
+        public bool IsValid()
+        {
+            return !Produtos.Any();
+        }
     }
 }
