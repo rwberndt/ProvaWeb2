@@ -34,7 +34,7 @@ namespace ProvaWeb2_RicardoWehmuth.Services
                     _produtoRepository.Update(p);
                 });
 
-                return ServiceResult.Success(update);
+                return ServiceResult.Success();
             }
             catch (Exception e)
             {
