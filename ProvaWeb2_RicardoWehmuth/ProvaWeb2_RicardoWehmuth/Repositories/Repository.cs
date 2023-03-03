@@ -1,4 +1,5 @@
-﻿using ProvaWeb2_RicardoWehmuth.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using ProvaWeb2_RicardoWehmuth.Context;
 using ProvaWeb2_RicardoWehmuth.Models;
 
 namespace ProvaWeb2_RicardoWehmuth.Repositories
@@ -18,6 +19,7 @@ namespace ProvaWeb2_RicardoWehmuth.Repositories
             _context.Database.BeginTransaction();
             _context.Set<TEntity>().Remove(entity);
             _context.SaveChanges();
+            _context.Database.CommitTransaction();
         }
 
         public TEntity? Find(int id)
@@ -27,7 +29,7 @@ namespace ProvaWeb2_RicardoWehmuth.Repositories
 
         public IQueryable<TEntity> GetAll()
         {
-            return _context.Set<TEntity>();
+            return _context.Set<TEntity>().AsNoTracking();
         }
 
         public void Insert(TEntity entity)
@@ -35,6 +37,7 @@ namespace ProvaWeb2_RicardoWehmuth.Repositories
             _context.Database.BeginTransaction();
             _context.Set<TEntity>().Add(entity);
             _context.SaveChanges();
+            _context.Database.CommitTransaction();
         }
 
         public void Update(TEntity entity)
@@ -42,6 +45,7 @@ namespace ProvaWeb2_RicardoWehmuth.Repositories
             _context.Database.BeginTransaction();
             _context.Set<TEntity>().Update(entity);
             _context.SaveChanges();
+            _context.Database.CommitTransaction();
         }
 
     }

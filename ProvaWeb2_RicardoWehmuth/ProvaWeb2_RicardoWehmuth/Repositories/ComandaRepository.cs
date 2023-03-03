@@ -17,9 +17,17 @@ namespace ProvaWeb2_RicardoWehmuth.Repositories
             _context.SaveChanges();
         }
 
-        public IEnumerable<Comanda> GetAll()
+        public IEnumerable<Usuario> GetAll()
         {
-            return _context.Comandas.Include(x=>x.Usuario).Include(x=>x.Produtos).ToList();
+            return _context.Usuarios.ToList();
+        }
+
+        public Comanda FindById(int id)
+        {
+            return _context.Comandas.Where(x => x.Id == id)
+                    .Include(x => x.Usuario)
+                    .Include(x => x.Produtos)
+                    .FirstOrDefault();
         }
 
     }

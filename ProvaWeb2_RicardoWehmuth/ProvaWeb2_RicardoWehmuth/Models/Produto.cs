@@ -15,7 +15,6 @@
 
         public string Nome { get; set; }
         public decimal Preco { get; set; }
-
         public bool IsValid()
         {
             if (String.IsNullOrEmpty(Nome) || Preco == 0)

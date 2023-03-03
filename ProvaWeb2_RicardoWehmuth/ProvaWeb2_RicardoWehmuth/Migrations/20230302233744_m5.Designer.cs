@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProvaWeb2_RicardoWehmuth.Context;
@@ -12,26 +11,22 @@ using ProvaWeb2_RicardoWehmuth.Context;
 namespace ProvaWeb2_RicardoWehmuth.Migrations
 {
     [DbContext(typeof(ComandaContext))]
-    [Migration("20230301200743_m1")]
-    partial class m1
+    [Migration("20230302233744_m5")]
+    partial class m5
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.3")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.3");
 
             modelBuilder.Entity("ProvaWeb2_RicardoWehmuth.Models.Comanda", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
+                    b.Property<int?>("UsuarioId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -40,24 +35,39 @@ namespace ProvaWeb2_RicardoWehmuth.Migrations
                     b.ToTable("Comandas");
                 });
 
-            modelBuilder.Entity("ProvaWeb2_RicardoWehmuth.Models.Produto", b =>
+            modelBuilder.Entity("ProvaWeb2_RicardoWehmuth.Models.ComandaProduto", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ComandaId")
-                        .HasColumnType("int");
+                    b.Property<int>("ComandaId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ComandaId");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("ComandaProdutos");
+                });
+
+            modelBuilder.Entity("ProvaWeb2_RicardoWehmuth.Models.Produto", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Produtos");
                 });
@@ -66,21 +76,19 @@ namespace ProvaWeb2_RicardoWehmuth.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("username")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -90,11 +98,14 @@ namespace ProvaWeb2_RicardoWehmuth.Migrations
             modelBuilder.Entity("ProvaWeb2_RicardoWehmuth.Models.Usuario", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("NomeUsuario")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Telefone")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -105,18 +116,26 @@ namespace ProvaWeb2_RicardoWehmuth.Migrations
                 {
                     b.HasOne("ProvaWeb2_RicardoWehmuth.Models.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UsuarioId");
 
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("ProvaWeb2_RicardoWehmuth.Models.Produto", b =>
+            modelBuilder.Entity("ProvaWeb2_RicardoWehmuth.Models.ComandaProduto", b =>
                 {
                     b.HasOne("ProvaWeb2_RicardoWehmuth.Models.Comanda", null)
                         .WithMany("Produtos")
-                        .HasForeignKey("ComandaId");
+                        .HasForeignKey("ComandaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProvaWeb2_RicardoWehmuth.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Produto");
                 });
 
             modelBuilder.Entity("ProvaWeb2_RicardoWehmuth.Models.Comanda", b =>

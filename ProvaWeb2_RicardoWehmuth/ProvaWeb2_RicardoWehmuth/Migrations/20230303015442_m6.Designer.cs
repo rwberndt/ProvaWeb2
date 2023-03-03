@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProvaWeb2_RicardoWehmuth.Context;
 
@@ -10,9 +11,11 @@ using ProvaWeb2_RicardoWehmuth.Context;
 namespace ProvaWeb2_RicardoWehmuth.Migrations
 {
     [DbContext(typeof(ComandaContext))]
-    partial class ComandaContextModelSnapshot : ModelSnapshot
+    [Migration("20230303015442_m6")]
+    partial class m6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.3");

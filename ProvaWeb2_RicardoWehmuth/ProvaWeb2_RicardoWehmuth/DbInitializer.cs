@@ -19,7 +19,7 @@ namespace ProvaWeb2_RicardoWehmuth
 
             if (context.Comandas.Any())
                 return;
-
+            return;
             var usuarios = new Usuario[]
             {
                 new Usuario(1,"Joao"),
@@ -49,17 +49,17 @@ namespace ProvaWeb2_RicardoWehmuth
 
             context.SaveChanges();
 
-            var comandas = new Comanda[]
-            {
-                new Comanda(1,usuarios[0],new List<Produto>{produtos[0],produtos[1]}),
-                new Comanda(2,usuarios[0],new List<Produto>{produtos[2],produtos[1]}),
-                new Comanda(3,usuarios[0],new List<Produto>(){produtos[3] })
-            };
-            foreach (var comanda in comandas)
-            {
-                context.Comandas.Add(comanda);
-            }
-            context.SaveChanges();
+            //var comandas = new Comanda[]
+            //{
+            //    new Comanda(1,usuarios[0],new List<Produto>{produtos[0],produtos[1]}),
+            //    new Comanda(2,usuarios[0],new List<Produto>{produtos[2],produtos[1]}),
+            //    new Comanda(3,usuarios[0],new List<Produto>(){produtos[3] })
+            //};
+            //foreach (var comanda in comandas)
+            //{
+            //    context.Comandas.Add(comanda);
+            //}
+            //context.SaveChanges();
         }
     }
 }

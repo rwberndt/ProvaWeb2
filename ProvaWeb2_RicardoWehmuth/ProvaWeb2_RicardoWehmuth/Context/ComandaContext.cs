@@ -16,6 +16,7 @@ namespace ProvaWeb2_RicardoWehmuth.Context
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Comanda> Comandas { get; set; }
         public DbSet<UserModel> Users { get; set; }
+        public DbSet<ComandaProduto> ComandaProdutos { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -23,7 +24,7 @@ namespace ProvaWeb2_RicardoWehmuth.Context
             var comandaConfig = modelBuilder.Entity<Comanda>();
 
             comandaConfig.HasKey(x => x.Id);
-            comandaConfig.HasOne(x => x.Usuario).WithMany(x=>x.Comandas);
+            comandaConfig.HasOne(x => x.Usuario);
             comandaConfig.HasMany(x => x.Produtos);
 
             var userConfig = modelBuilder.Entity<Usuario>();
@@ -36,6 +37,10 @@ namespace ProvaWeb2_RicardoWehmuth.Context
             var userModelConfig = modelBuilder.Entity<UserModel>();
 
             userModelConfig.HasKey(x => x.Id);
+
+            var comandaProdutoModelConfig = modelBuilder.Entity<ComandaProduto>();
+            comandaProdutoModelConfig.HasKey(x => x.Id);
+            comandaProdutoModelConfig.HasOne(x => x.Produto);
 
             base.OnModelCreating(modelBuilder);
         }

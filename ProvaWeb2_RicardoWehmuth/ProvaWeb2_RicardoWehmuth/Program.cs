@@ -33,7 +33,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 
-builder.Services.AddScoped<IComandaRepository, ComandaRepository>();
+builder.Services.AddTransient<IComandaRepository, ComandaRepository>();
+builder.Services.AddTransient<IProdutoRepository, ProdutoRepository>();
+builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddTransient<IComandaProdutoRepository, ComandaProdutoRepository>();
 builder.Services.AddTransient<IComandaService, ComandaService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddEndpointsApiExplorer();

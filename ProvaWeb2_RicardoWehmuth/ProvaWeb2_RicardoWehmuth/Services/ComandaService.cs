@@ -1,25 +1,43 @@
 ﻿using ProvaWeb2_RicardoWehmuth.Models;
+using ProvaWeb2_RicardoWehmuth.Models.DTOs;
 using ProvaWeb2_RicardoWehmuth.Repositories;
 
 namespace ProvaWeb2_RicardoWehmuth.Services
 {
     public class ComandaService : IComandaService
     {
-
+        private readonly IComandaProdutoRepository _comandaProdutoRepository;
         private readonly IComandaRepository _comandaRepository;
+        private readonly IProdutoRepository _produtoRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
 
-        public ComandaService(IComandaRepository comandaRepository)
+        public ComandaService(IComandaRepository comandaRepository, IProdutoRepository produtoRepository, IUsuarioRepository usuarioRepository, IComandaProdutoRepository comandaProdutoRepository)
         {
             _comandaRepository = comandaRepository;
+            _produtoRepository = produtoRepository;
+            _usuarioRepository = usuarioRepository;
+            _comandaProdutoRepository = comandaProdutoRepository;
         }
 
-        public async Task<ServiceResult> AtualizarComanda(int id, Comanda comanda)
+        public async Task<ServiceResult> AtualizarComanda(int id, UpdateComandaDto update)
         {
             if (!ValdateId(id))
                 return ServiceResult.Failure(new ArgumentException("Id inválido"));
             try
             {
-                _comandaRepository.Update(comanda);
+                var comanda = _comandaRepository.FindById(id);
+                if (comanda == null)
+                    return ServiceResult.Failure();
+               var comandaProdutos =  _comandaProdutoRepository.BuscarComandaProdutoPorComanda(id).ToList();
+                update.Produtos.ForEach(x =>
+                {
+                    if (!comandaProdutos.Any(x => x.ProdutoId == x.Id))
+                    {
+                        var novo = new ComandaProduto(id, x.Id, x);
+                        _comandaProdutoRepository.Insert(novo);
+                    }
+                });
+
                 return ServiceResult<Comanda>.Success(comanda);
             }
             catch (Exception e)
@@ -34,18 +52,23 @@ namespace ProvaWeb2_RicardoWehmuth.Services
             if (!ValdateId(id))
                 return ServiceResult.Failure(new ArgumentException("Id inválido"));
 
-            var comanda = _comandaRepository.Find(id);
+            var comanda = _comandaRepository.FindById(id);
 
-            return ServiceResult<Comanda>.Success(comanda);
+            var result = new CreateCommandDto(comanda.Id,comanda.Usuario);
+
+            var comandasProduto = _comandaProdutoRepository.BuscarComandaProdutoPorComanda(comanda.Id).ToList();
+            comandasProduto.ForEach(x => result.Produtos.Add(x.Produto));
+
+            return ServiceResult<Comanda>.Success(result);
         }
 
-        public async Task<ServiceResult> BuscarComandas()
+        public async Task<ServiceResult> BuscarUsuarios()
         {
             try
             {
                 var comandas = _comandaRepository.GetAll();
 
-                return ServiceResult<Comanda>.Success(comandas);
+                return ServiceResult.Success(comandas);
 
             }
             catch (Exception e)
@@ -54,13 +77,43 @@ namespace ProvaWeb2_RicardoWehmuth.Services
             }
         }
 
-        public async Task<ServiceResult> CadastrarComanda(Comanda comanda)
+        public async Task<ServiceResult> CadastrarComanda(CreateCommandDto comanda)
         {
             if (!comanda.IsValid())
                 return ServiceResult.Failure(new ArgumentException("Comanda inválida"));
             try
             {
-                _comandaRepository.CadastrarComanda(comanda);
+                var user = _usuarioRepository.Find(comanda.Usuario.Id);
+                if (user == null)
+                    _usuarioRepository.Insert(comanda.Usuario);
+                else
+                    comanda.Usuario = user;
+
+                List<ComandaProduto> comandaProdutos = new List<ComandaProduto>();
+                comanda.Produtos.ForEach(p =>
+                {
+                    var produto = _produtoRepository.Find(p.Id);
+
+                    if (produto is null)
+                    {
+                        _produtoRepository.Insert(p);
+                        
+
+                    }
+                    else
+                    {
+                        p = produto;
+
+                    }
+
+                    comandaProdutos.Add(new ComandaProduto(comanda.Id,p.Id,p));
+                });
+
+                var comandaEntity = new Comanda(comanda.Id, comanda.Usuario, new List<ComandaProduto>());
+
+                _comandaRepository.CadastrarComanda(comandaEntity);
+
+                comandaProdutos.ForEach(x => _comandaProdutoRepository.Insert(x));
 
                 return ServiceResult<Comanda>.Success(comanda);
             }
@@ -74,7 +127,11 @@ namespace ProvaWeb2_RicardoWehmuth.Services
         {
             if (!ValdateId(id))
                 return ServiceResult.Failure(new ArgumentException("Id inválido"));
-            var comanda = _comandaRepository.Find(id);
+            var comanda = _comandaRepository.FindById(id);
+
+            comanda.UsuarioId = null;
+            comanda.Usuario = null;
+            comanda.Produtos = null;
 
             try
             {

@@ -13,18 +13,16 @@ namespace ProvaWeb2_RicardoWehmuth.Models
             Id= id;
             NomeUsuario = nomeUsuario;
         }
-        public Usuario(int id, string nomeUsuario, List<Comanda> comandas)
+        public Usuario(int id,string nomeUsuario, string telefone)
         {
-            Id = id;
+            Id= id;
             NomeUsuario = nomeUsuario;
-            Comandas= comandas;
+            Telefone = telefone;
         }
-
-
-        public string NomeUsuario { get; set; }
         
-        public virtual List<Comanda> Comandas { get; set; }
-
+        public string NomeUsuario { get; set; }
+        public string? Telefone { get; set; }
+        
         public bool IsValid()
         {
             if(String.IsNullOrEmpty(NomeUsuario))

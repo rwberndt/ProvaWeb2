@@ -6,15 +6,15 @@
         {
 
         }
-        public Comanda(int id, Usuario usuario, List<Produto> produtos)
+        public Comanda(int id, Usuario usuario, List<ComandaProduto> produtos)
         {
             Id = id;
             Usuario = usuario;
             Produtos = produtos;
         }
-        public int UsuarioId { get; set; }
-        public virtual Usuario Usuario { get; set; }
-        public virtual List<Produto> Produtos { get;  set; }
+        public int? UsuarioId { get; set; }
+        public virtual Usuario? Usuario { get; set; }
+        public virtual List<ComandaProduto>? Produtos { get;  set; }
 
         public bool IsValid()
         {
@@ -23,5 +23,6 @@
 
             return true;
         }
+
     }
 }
